@@ -3,6 +3,7 @@ package main
 import (
 	"time"
 
+	"github.com/Johna210/go-clean-architecture/api/router"
 	"github.com/Johna210/go-clean-architecture/bootstrap"
 	"github.com/gin-gonic/gin"
 )
@@ -18,5 +19,9 @@ func main() {
 	timeout := time.Duration(env.ContextTimeout) * time.Second
 
 	gin := gin.Default()
+
+	router.Setup(env, timeout, *db, gin)
+
+	gin.Run(env.ServerAddress)
 
 }
