@@ -24,7 +24,7 @@ func (lc *LoginController) Login(c *gin.Context) {
 
 	user, err := lc.LoginUsecase.GetUserByEmail(c, request.Email)
 	if err != nil {
-		c.JSON(http.StatusNotFound, domain.ErrorResponse{Message: "User not fiund with the given email"})
+		c.JSON(http.StatusNotFound, domain.ErrorResponse{Message: "User not found with the given email"})
 	}
 
 	if bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(request.Password)) != nil {
